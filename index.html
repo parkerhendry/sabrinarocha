@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conservation Ecology Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c6e49;
+            --secondary-color: #4c956c;
+            --accent-color: #fefee3;
+            --dark-color: #1a3a1a;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background-color: #fcfcfc;
+        }
+        
+        .bg-primary-custom {
+            background-color: var(--primary-color);
+        }
+        
+        .bg-secondary-custom {
+            background-color: var(--secondary-color);
+        }
+        
+        .text-primary-custom {
+            color: var(--primary-color);
+        }
+        
+        .btn-primary-custom {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary-custom:hover {
+            background-color: var(--dark-color);
+            border-color: var(--dark-color);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1920/1080');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 8rem 0;
+            position: relative;
+        }
+        
+        .project-card {
+            transition: transform 0.3s;
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .skill-badge {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            margin: 0.25rem;
+            display: inline-block;
+            font-size: 0.9rem;
+        }
+        
+        .section-heading {
+            position: relative;
+            padding-bottom: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .section-heading:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary-color);
+        }
+        
+        .social-icons a {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--dark-color);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+        }
+        
+        .nav-link {
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--secondary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-container::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -13px;
+            background-color: white;
+            border: 4px solid var(--primary-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid var(--light-color);
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent var(--light-color);
+        }
+
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid var(--light-color);
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--light-color) transparent transparent;
+        }
+
+        .right::after {
+            left: -12px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 6px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        @media screen and (max-width: 600px) {
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-container {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-container::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+
+            .left::after, .right::after {
+                left: 15px;
+            }
+
+            .right {
+                left: 0%;
+            }
+        }
+        
+        .research-poster {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .poster-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(44, 110, 73, 0.85);
+            overflow: hidden;
+            width: 100%;
+            height: 0;
+            transition: .5s ease;
+        }
+        
+        .research-poster:hover .poster-overlay {
+            height: 100%;
+        }
+        
+        .poster-text {
+            color: white;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand text-primary-custom fw-bold" href="#">Sabrina Rocha</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#research">Research</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience">Experience</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#fieldwork">Fieldwork</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold">Sabrina Rocha</h1>
+            <p class="lead">Conservation Ecologist | Wildlife Researcher | Environmental Advocate</p>
+            <div class="mt-4">
+                <a href="#contact" class="btn btn-light me-2">Get in Touch</a>
+                <a href="#research" class="btn btn-outline-light">View Research</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <img src="new.jpeg" alt="Profile Photo" class="img-fluid rounded-circle border border-5 border-light shadow">
+                </div>
+                <div class="col-lg-8">
+                    <h2 class="section-heading">About Me</h2>
+                    <p class="lead">Passionate conservation ecologist dedicated to protecting biodiversity and preserving natural ecosystems.</p>
+                    <p>With a background in [Your Field/Degree], I focus on [specific area of conservation/ecology]. My research interests include [specific ecological topics], with a particular emphasis on developing sustainable conservation strategies for [specific ecosystems/species].</p>
+                    <p>I combine field research, ecological monitoring, and community engagement to address environmental challenges. Currently, I'm working on [current project or role], where I [brief description of what you do].</p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Projects Section -->
+    <section id="research" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-heading text-center mb-5">Research Projects & Posters</h2>
+            <div class="row g-4">
+                <!-- Research Poster 1 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card project-card h-100">
+                        <div class="research-poster">
+                            <img src="new.jpeg" class="card-img-top" alt="Research Poster">
+                            <div class="poster-overlay">
+                                <div class="poster-text">
+                                    <h5>Click to view full poster</h5>
+                                    <p class="mt-3">Presented at [Conference/Event Name], [Year]</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">[Habitat Conservation Research Title]</h5>
+                            <div class="mb-2">
+                                <span class="badge bg-secondary-custom">Habitat Assessment</span>
+                                <span class="badge bg-secondary-custom">Conservation Planning</span>
+                            </div>
+                            <p class="card-text">Research examining [brief description of research focus and findings]. This study contributed to [impact or application of the research].</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research Poster 2 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card project-card h-100">
+                        <div class="research-poster">
+                            <img src="/api/placeholder/600/400" class="card-img-top" alt="Research Poster">
+                            <div class="poster-overlay">
+                                <div class="poster-text">
+                                    <h5>Click to view full poster</h5>
+                                    <p class="mt-3">Presented at [Conference/Event Name], [Year]</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">[Species Monitoring Research Title]</h5>
+                            <div class="mb-2">
+                                <span class="badge bg-secondary-custom">Wildlife Monitoring</span>
+                                <span class="badge bg-secondary-custom">Field Surveys</span>
+                            </div>
+                            <p class="card-text">Investigation into [brief description of research focus and methodology]. Findings highlighted [key outcomes or conclusions].</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research Poster 3 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card project-card h-100">
+                        <div class="research-poster">
+                            <img src="/api/placeholder/600/400" class="card-img-top" alt="Research Poster">
+                            <div class="poster-overlay">
+                                <div class="poster-text">
+                                    <h5>Click to view full poster</h5>
+                                    <p class="mt-3">Presented at [Conference/Event Name], [Year]</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">[Ecosystem Restoration Research Title]</h5>
+                            <div class="mb-2">
+                                <span class="badge bg-secondary-custom">Restoration Ecology</span>
+                                <span class="badge bg-secondary-custom">Community Engagement</span>
+                            </div>
+                            <p class="card-text">Research project focused on [brief description of research focus]. Results demonstrated [key findings and implications].</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research Poster 4 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card project-card h-100">
+                        <div class="research-poster">
+                            <img src="/api/placeholder/600/400" class="card-img-top" alt="Research Poster">
+                            <div class="poster-overlay">
+                                <div class="poster-text">
+                                    <h5>Click to view full poster</h5>
+                                    <p class="mt-3">Presented at [Conference/Event Name], [Year]</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">[Conservation Policy Research Title]</h5>
+                            <div class="mb-2">
+                                <span class="badge bg-secondary-custom">Policy Analysis</span>
+                                <span class="badge bg-secondary-custom">Stakeholder Engagement</span>
+                            </div>
+                            <p class="card-text">Analysis of [brief description of research focus]. This work helped inform [policy decisions or conservation approaches].</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research Poster 5 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card project-card h-100">
+                        <div class="research-poster">
+                            <img src="/api/placeholder/600/400" class="card-img-top" alt="Research Poster">
+                            <div class="poster-overlay">
+                                <div class="poster-text">
+                                    <h5>Click to view full poster</h5>
+                                    <p class="mt-3">Presented at [Conference/Event Name], [Year]</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">[Climate Impact Research Title]</h5>
+                            <div class="mb-2">
+                                <span class="badge bg-secondary-custom">Climate Adaptation</span>
+                                <span class="badge bg-secondary-custom">Ecological Monitoring</span>
+                            </div>
+                            <p class="card-text">Study examining [brief description of research focus and methodology]. Results provided insights into [key findings and implications].</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research Poster 6 -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="card project-card h-100">
+                        <div class="research-poster">
+                            <img src="/api/placeholder/600/400" class="card-img-top" alt="Research Poster">
+                            <div class="poster-overlay">
+                                <div class="poster-text">
+                                    <h5>Click to view full poster</h5>
+                                    <p class="mt-3">Presented at [Conference/Event Name], [Year]</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold">[Wildlife Conservation Research Title]</h5>
+                            <div class="mb-2">
+                                <span class="badge bg-secondary-custom">Species Conservation</span>
+                                <span class="badge bg-secondary-custom">Habitat Protection</span>
+                            </div>
+                            <p class="card-text">Research focused on [brief description of research focus]. Findings contributed to [conservation outcomes or applications].</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-5">
+        <div class="container">
+            <h2 class="section-heading text-center mb-5">Professional Experience</h2>
+            
+            <div class="timeline">
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h4>[Current Position Title]</h4>
+                        <h6 class="text-muted">[Organization Name] | [Start Year] - Present</h6>
+                        <p>[Description of your responsibilities, projects, and achievements in this role. Focus on conservation and ecology work, field research, and any collaborative efforts.]</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h4>[Previous Position Title]</h4>
+                        <h6 class="text-muted">[Organization Name] | [Start Year] - [End Year]</h6>
+                        <p>[Description of your responsibilities, projects, and achievements in this role. Emphasize ecological fieldwork, conservation planning, or other relevant activities.]</p>
+                    </div>
+                </div>
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h4>[Previous Position Title]</h4>
+                        <h6 class="text-muted">[Organization Name] | [Start Year] - [End Year]</h6>
+                        <p>[Description of your responsibilities, projects, and achievements in this role. Highlight any research contributions, community engagement, or conservation outcomes.]</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h4>[Previous Position Title]</h4>
+                        <h6 class="text-muted">[Organization Name] | [Start Year] - [End Year]</h6>
+                        <p>[Description of your responsibilities, projects, and achievements in this role. Include noteworthy conservation projects, fieldwork experiences, or research initiatives.]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fieldwork Section -->
+    <section id="fieldwork" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-heading text-center mb-5">Fieldwork & Research Experience</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card shadow-sm">
+                        <div class="card-body p-4">
+                            <div class="row mb-4">
+                                <div class="col-md-6 mb-4 mb-md-0">
+                                    <h5>[Field Research Project Name]</h5>
+                                    <p class="text-muted">[Location] | [Year]</p>
+                                    <p>[Description of your fieldwork, including research objectives, methodologies, and outcomes. Highlight specific conservation or ecological insights gained.]</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="new.jpeg" alt="Fieldwork Image" class="img-fluid rounded shadow-sm">
+                                </div>
+                            </div>
+                            
+                            <hr class="my-4">
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-6 order-md-2 mb-4 mb-md-0">
+                                    <h5>[Field Research Project Name]</h5>
+                                    <p class="text-muted">[Location] | [Year]</p>
+                                    <p>[Description of your fieldwork, including research objectives, methodologies, and outcomes. Discuss the ecological significance and conservation implications.]</p>
+                                </div>
+                                <div class="col-md-6 order-md-1">
+                                    <img src="/api/placeholder/600/400" alt="Fieldwork Image" class="img-fluid rounded shadow-sm">
+                                </div>
+                            </div>
+                            
+                            <hr class="my-4">
+                            
+                            <div class="row">
+                                <div class="col-md-6 mb-4 mb-md-0">
+                                    <h5>[Field Research Project Name]</h5>
+                                    <p class="text-muted">[Location] | [Year]</p>
+                                    <p>[Description of your fieldwork, including research objectives, methodologies, and outcomes. Emphasize any collaborative aspects or community involvement.]</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="/api/placeholder/600/400" alt="Fieldwork Image" class="img-fluid rounded shadow-sm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-5">
+        <div class="container">
+            <h2 class="section-heading text-center mb-5">Skills & Expertise</h2>
+            <div class="row g-4">
+                <!-- Research Skills -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title text-primary-custom mb-4"><i class="fas fa-microscope me-2"></i>Research & Fieldwork</h4>
+                            <div>
+                                <span class="skill-badge">Experimental Design</span>
+                                <span class="skill-badge">Field Surveys</span>
+                                <span class="skill-badge">Biodiversity Assessment</span>
+                                <span class="skill-badge">Habitat Assessment</span>
+                                <span class="skill-badge">Wildlife Monitoring</span>
+                                <span class="skill-badge">Species Identification</span>
+                                <span class="skill-badge">Transect Sampling</span>
+                                <span class="skill-badge">Ecosystem Analysis</span>
+                                <span class="skill-badge">Land Use Assessment</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conservation Skills -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title text-primary-custom mb-4"><i class="fas fa-leaf me-2"></i>Conservation & Management</h4>
+                            <div>
+                                <span class="skill-badge">Conservation Planning</span>
+                                <span class="skill-badge">Protected Area Management</span>
+                                <span class="skill-badge">Habitat Restoration</span>
+                                <span class="skill-badge">Wildlife Management</span>
+                                <span class="skill-badge">Environmental Impact Assessment</span>
+                                <span class="skill-badge">Conservation Policy</span>
+                                <span class="skill-badge">Sustainable Resource Management</span>
+                                <span class="skill-badge">Community Conservation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Professional Skills -->
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm">
+                        <div class="card-body">
+                            <h4 class="card-title text-primary-custom mb-4"><i class="fas fa-tasks me-2"></i>Professional Skills</h4>
+                            <div>
+                                <span class="skill-badge">Scientific Writing</span>
+                                <span class="skill-badge">Grant Writing</span>
+                                <span class="skill-badge">Project Management</span>
+                                <span class="skill-badge">Data Analysis</span>
+                                <span class="skill-badge">GIS Fundamentals</span>
+                                <span class="skill-badge">Public Speaking</span>
+                                <span class="skill-badge">Environmental Education</span>
+                                <span class="skill-badge">Stakeholder Engagement</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-heading text-center mb-5">Get In Touch</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow">
+                        <div class="card-body p-5">
+                            <div class="row">
+                                <div class="col-md-6 mb-4 mb-md-0">
+                                    <h4 class="mb-4">Contact Information</h4>
+                                    <p><i class="fas fa-envelope me-2 text-primary-custom"></i> [your.email@example.com]</p>
+                                    <p><i class="fas fa-map-marker-alt me-2 text-primary-custom"></i> [Your Location/Institution]</p>
+                                    <p><i class="fas fa-phone me-2 text-primary-custom"></i> [Phone Number]</p>
+                                    
+                                    <h5 class="mt-4 mb-3">Connect With Me</h5>
+                                    <div class="social-icons">
+                                        <a href="#"><i class="fab fa-instagram"></i></a>
+                                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                                        <a href="#"><i class="fab fa-twitter"></i></a>
+                                        <a href="#"><i class="fab fa-researchgate"></i></a>
+                                        <a href="#"><i class="fas fa-globe"></i></a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4 class="mb-4">Send a Message</h4>
+                                    <form>
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" placeholder="Your Name">
+                                        </div>
+                                        <div class="mb-3">
+                                            <input type="email" class="form-control" placeholder="Your Email">
+                                        </div>
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" placeholder="Subject">
+                                        </div>
+                                        <div class="mb-3">
+                                            <textarea class="form-control" rows="4" placeholder="Your Message"></textarea>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary-custom w-100">Send Message</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 Sabrina Rocha | Conservation Ecologist & Environmental Researcher</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Navbar background change on scroll
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow');
+            } else {
+                navbar.classList.remove('shadow');
+            }
+        });
+    </script>
+</body>
+</html>
